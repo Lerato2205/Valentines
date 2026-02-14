@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Surprise for Josiah</title>
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #ffe6e6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    color: #b30059;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  input {
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 2px solid #b30059;
+    margin: 10px 0;
+  }
+
+  button {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 25px;
+    background: #b30059;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+  }
+
+  button:hover {
+    background: #ff1a75;
+  }
+
+  .message {
+    display: none;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #fff0f5;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  .success {
+    color: #e60073;
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<h1>💖 A Valentine’s card for Josiah 💖</h1>
+
+<p>Answer the questions about me to reveal your special Valentine’s message!</p>
+
+<div class="quiz">
+  <input type="text" id="q1" placeholder="What's my favourite drink?">
+  <input type="text" id="q2" placeholder="Where was our first date (area)?">
+  <input type="text" id="q3" placeholder="When is my birthday (date & month)?">
+  <button onclick="checkAnswers()">Submit Answers</button>
+  <p class="success" id="hint"></p>
+</div>
+
+<div class="message" id="valentineMessage">
+  <h1>Hi Josiah, my love! ❤️</h1>
+  <p>I created this little card for you to show you how much I adore you. Every answer you got right shows how well you know me, but the real prize is my heart, which is all yours. (Your Software Engineer) 💖</p>
+  <p>Happy Valentine’s Day!</p>
+</div>
+
+<script>
+  // Correct answers (lowercase & flexible formats)
+  const answers = {
+    q1: ["stoney"],                // favorite drink
+    q2: ["rosebank"],              // first date area
+    q3: ["22 may", "22/5", "22-5"] // birthday formats
+  };
+
+  function checkAnswers() {
+    const q1 = document.getElementById('q1').value.toLowerCase().trim();
+    const q2 = document.getElementById('q2').value.toLowerCase().trim();
+    const q3 = document.getElementById('q3').value.toLowerCase().trim();
+
+    const correctQ1 = answers.q1.includes(q1);
+    const correctQ2 = answers.q2.includes(q2);
+    const correctQ3 = answers.q3.includes(q3);
+
+    if(correctQ1 && correctQ2 && correctQ3) {
+      document.getElementById('valentineMessage').style.display = "block";
+      document.getElementById('hint').textContent = "";
+    } else {
+      document.getElementById('hint').textContent = "Oops! Try again 😘";
+    }
+  }
+</script>
+</body>
+</html>
